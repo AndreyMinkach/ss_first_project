@@ -1,22 +1,28 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class ThirdTask {
-    public static String getCircleArea(double radius) {
-        return String.valueOf(Math.pow(radius, 2) * Math.PI);
+    public static double getListSum(double [] list){
+        double sum = 0;
+        for (Double d : list)
+            sum += d;
+        return  sum;
     }
 
-    public static String getCirclePerimeter(double radius) {
-        return String.valueOf(2 * radius * Math.PI);
+    public static double getCircleArea(double radius) {
+        return Math.pow(radius, 2) * Math.PI;
+    }
+
+    public static double getCirclePerimeter(double radius) {
+        return 2 * radius * Math.PI;
     }
 
     private static void showCirclePerimeterAndArea(BufferedReader br) throws IOException {
-        System.out.println("Enter circle radius: ");
+        System.out.println("Enter circle radius: \n");
         double circleRadius = Double.parseDouble(br.readLine());
-        System.out.println("1)\nCircle radius = " + getCirclePerimeter(circleRadius));
-        System.out.println("Circle area = " + getCircleArea(circleRadius));
+        System.out.printf("Circle perimeter = %.2f\n", getCirclePerimeter(circleRadius));
+        System.out.printf("Circle area = %.2f\n", getCircleArea(circleRadius));
     }
 
     public static void showUserInfo(BufferedReader br) throws IOException {
@@ -27,21 +33,18 @@ public class ThirdTask {
         System.out.printf("Your name is %s and you live in %s.\n", userName, userAddress);
     }
 
-    public static void getUnitCountEachCall(BufferedReader br) throws IOException {
-        System.out.print("Enter units count for each of the three countries: ");
+    public static void showUnitCountEachCall(BufferedReader br) throws IOException {
+        System.out.print("Enter units count for each of the three countries\nIn one line!: ");
         String[] units = br.readLine().split(" ");
-        System.out.println(Arrays.toString(units));
-        System.out.println("Enter the call duration in minutes: ");
+        System.out.println("Enter the call duration in minutes\nIn one line!: ");
         String[] duration = br.readLine().split(" ");
 
-        double unitCountAllCall[] = new double[3];
+        double[] unitCountAllCall = new double[3];
         for (int i = 0; i < units.length; i++) {
             unitCountAllCall[i] = Double.parseDouble(units[i]) * Double.parseDouble(duration[i]);
         }
-        double sum = 0;
-        for (Double d : unitCountAllCall)
-            sum += d;
-        System.out.println("General sum of units: " + sum);
+
+        System.out.printf("General sum of units: %.2f\n", getListSum(unitCountAllCall));
         for (int i = 0; i < units.length; i++) {
             System.out.printf("%.2f units per %s for user %d\n", unitCountAllCall[i], duration[i], i + 1);
         }
@@ -54,7 +57,7 @@ public class ThirdTask {
 
         showUserInfo(br);
 
-        getUnitCountEachCall(br);
+        showUnitCountEachCall(br);
 
     }
 }

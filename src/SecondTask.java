@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class SecondTask {
-    public static boolean contains(double ourNumber, String whatToFind){
+    public static boolean containsOurNumberOtherNumber(double ourNumber, String whatToFind){
         return String.valueOf(ourNumber*ourNumber).contains(whatToFind);
     }
 
@@ -29,7 +29,8 @@ public class SecondTask {
         System.out.println("Enter natural numbers: ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         double ourNumber = Double.parseDouble(br.readLine());
-        System.out.println("1) " + contains(ourNumber, "3"));
+        
+        System.out.println("1) " + containsOurNumberOtherNumber(ourNumber, "3"));
         System.out.println("2) " + reverseString(ourNumber));
         System.out.println("3) " + swapFirstAndLastElements(ourNumber));
         System.out.println("4) " + addOneToOurNumber(ourNumber));

@@ -45,8 +45,6 @@ class Task {
 }
 
 public class SecondTask {
-
-
     public static void main(String[] args) throws IOException {
         System.out.println("Enter natural numbers: ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

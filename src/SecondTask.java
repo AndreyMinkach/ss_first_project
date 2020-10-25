@@ -2,17 +2,27 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class SecondTask {
-    public static boolean containsOurNumberOtherNumber(double ourNumber, String whatToFind){
-        return String.valueOf(ourNumber*ourNumber).contains(whatToFind);
+class Task {
+    double ourNumber;
+
+    public Task(){
+        this(12.3);
     }
 
-    public static String reverseString(double ourNumber) {
-        return new StringBuilder(String.valueOf(ourNumber)).reverse().toString();
+    public Task(double ourNumber) {
+        this.ourNumber = ourNumber;
     }
 
-    public static String swapFirstAndLastElements(double ourNumber) {
-        String strOurNumber = String.valueOf(ourNumber);
+    public boolean containsOurNumberOtherNumber(String whatToFind) {
+        return String.valueOf(this.ourNumber * this.ourNumber).contains(whatToFind);
+    }
+
+    public String reverseString() {
+        return new StringBuilder(String.valueOf(this.ourNumber)).reverse().toString();
+    }
+
+    public String swapFirstAndLastElements() {
+        String strOurNumber = String.valueOf(this.ourNumber);
         char ch[] = strOurNumber.toCharArray();
         char tempElement = ch[0];
         ch[0] = ch[strOurNumber.length() - 1];
@@ -20,19 +30,28 @@ public class SecondTask {
         return String.valueOf(ch);
     }
 
-    private static String addOneToOurNumber(double ourNumber) {
-        String strOurNumber = String.valueOf(ourNumber);
+    public String addOneToOurNumber() {
+        String strOurNumber = String.valueOf(this.ourNumber);
         return "1" + strOurNumber + "1";
     }
+
+    public void showTaskResults(){
+        System.out.println("1) " + containsOurNumberOtherNumber("3"));
+        System.out.println("2) " + reverseString());
+        System.out.println("3) " + swapFirstAndLastElements());
+        System.out.println("4) " + addOneToOurNumber());
+    }
+
+}
+
+public class SecondTask {
+
 
     public static void main(String[] args) throws IOException {
         System.out.println("Enter natural numbers: ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         double ourNumber = Double.parseDouble(br.readLine());
-        
-        System.out.println("1) " + containsOurNumberOtherNumber(ourNumber, "3"));
-        System.out.println("2) " + reverseString(ourNumber));
-        System.out.println("3) " + swapFirstAndLastElements(ourNumber));
-        System.out.println("4) " + addOneToOurNumber(ourNumber));
+        Task ourTask = new Task(ourNumber);
+        ourTask.showTaskResults();
     }
 }

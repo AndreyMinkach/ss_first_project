@@ -1,47 +1,46 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static <K, V> K getKey(Map<K, V> map, V value) {
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            if (value.equals(entry.getValue())) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         ArrayList<Integer> myCollection = new ArrayList<>();
-        ArrayList<Integer> newCollection = new ArrayList<>();
-        Random random = new Random();
+        Map<Integer, String> employeeMap = new HashMap<Integer, String>();
+        employeeMap.put(1, "Employee1");
+        employeeMap.put(2, "Employee2");
+        employeeMap.put(3, "Employee3");
+        employeeMap.put(4, "Employee4");
+        employeeMap.put(5, "Employee5");
+        employeeMap.put(6, "Employee6");
+        employeeMap.put(7, "Employee7");
+        System.out.println(employeeMap.toString());
 
-        ////////////// 1 ///////////////
-        System.out.println("1");
-        for (int i = 0; i < 10; i++) {
-            myCollection.add(random.nextInt(40));
-            if (myCollection.get(myCollection.size() - 1) > 5) {
-                newCollection.add(myCollection.get(myCollection.size() - 1));
-            }
-        }
-        System.out.println(newCollection.toString());
-
-        ////////////// 2 ///////////////
-        System.out.println("2");
-        for (int i = 0; i < myCollection.size(); i++) {
-            if (myCollection.get(i) > 20) {
-                myCollection.remove(i);
-            }
+        System.out.println("Enter employees id");
+        Integer employeeId = Integer.parseInt(br.readLine());
+        if (employeeMap.containsKey(employeeId)) {
+            System.out.println(employeeMap.get(employeeId));
+        } else {
+            System.out.println("Cant find employee with that id " + employeeId);
         }
 
-        ////////////// 3 ///////////////
-        System.out.println("3");
-        try {
-            myCollection.add(2, 1);
-            myCollection.add(8, -3);
-            myCollection.add(5, -4 );
-        }catch (IndexOutOfBoundsException e){
-            System.err.println("Short array");
+        System.out.println("Enter employees name");
+        String employeeName = br.readLine();
+        if (employeeMap.containsValue(employeeName)) {
+            System.out.println(getKey(employeeMap, employeeName));
+        }else {
+            System.out.println("Cant find employee with that name " + employeeName);
         }
 
-        for (int i = 0; i < myCollection.size(); i++) {
-            System.out.printf("position – %d, value of element – %d\n", i, myCollection.get(i));
-        }
-
-        ////////////// 4 ///////////////
-        System.out.println("4");
-        System.out.println(myCollection.toString());
-        Collections.sort(myCollection);
-        System.out.println(myCollection.toString());
     }
 }

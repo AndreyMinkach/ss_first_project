@@ -1,39 +1,25 @@
-import com.ss.first.Animal;
-import com.ss.first.Cat;
-import com.ss.first.Dog;
-import com.ss.second.*;
-
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList <Animal>animalList = new ArrayList<>();
 
-        Cat cat = new Cat();
-        Dog dog = new Dog();
+        LinkedList<Bird> birds = new LinkedList<>();
 
-        animalList.add(cat);
-        animalList.add(dog);
+        Eagle eagle = new Eagle("Sea Eagle", Features.FAST, 100.0);
+        Swallow swallow = new Swallow("Barn swallow", Features.DISTRIBUTION, 50.0);
+        Penguin penguin = new Penguin("King Penguin", Features.SWIM, 7.0);
+        Kiwi kiwi = new Kiwi("Brown kiwi", Features.SMALL, 1);
 
-        for (Animal animal : animalList) {
-            animal.voice();
+        birds.add(eagle);
+        birds.add(swallow);
+        birds.add(penguin);
+        birds.add(kiwi);
+
+        for (Bird bird: birds) {
+            bird.fly();
+            System.out.println(bird.toString());
         }
 
-        ArrayList<Person> personList = new ArrayList<>();
-
-        Student student = new Student("Andrii");
-        Teacher teacher = new Teacher("Not Andrii");
-        Cleaner cleaner = new Cleaner("Hope not Andrii");
-
-        personList.add(student);
-        personList.add(teacher);
-        personList.add(cleaner);
-
-        for (Person person : personList) {
-            person.print();
-            if (person instanceof Staff) {
-                ((Staff) person).salary();
-            }
         }
-    }
 }

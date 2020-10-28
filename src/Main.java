@@ -1,26 +1,48 @@
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList<Employee> employees= new LinkedList<>();
+        ArrayList<Integer> myCollection = new ArrayList<>();
+        ArrayList<Integer> newCollection = new ArrayList<>();
+        Random random = new Random();
 
-        ContractEmployee contractEmployee = new ContractEmployee("Dron1", 9, 10, "1", "a0000");
-        ContractEmployee contractEmployee1 = new ContractEmployee("Dron2", 10, 11,"2", "a0001");
-        ContractEmployee contractEmployee2 = new ContractEmployee("Dron3", 11, 13,"3", "a0002");
-
-        SalariedEmployee salariedEmployee = new SalariedEmployee("Dron4", 100, "4", "b0000");
-        SalariedEmployee salariedEmployee2 = new SalariedEmployee("Dron5", 150, "4", "b0000");
-
-        employees.add(contractEmployee);
-        employees.add(contractEmployee1);
-        employees.add(contractEmployee2);
-        employees.add(salariedEmployee);
-        employees.add(salariedEmployee2);
-
-        for (Employee employee: employees) {
-            System.out.println(employee.toString());
+        ////////////// 1 ///////////////
+        System.out.println("1");
+        for (int i = 0; i < 10; i++) {
+            myCollection.add(random.nextInt(40));
+            if (myCollection.get(myCollection.size() - 1) > 5) {
+                newCollection.add(myCollection.get(myCollection.size() - 1));
+            }
         }
+        System.out.println(newCollection.toString());
+
+        ////////////// 2 ///////////////
+        System.out.println("2");
+        for (int i = 0; i < myCollection.size(); i++) {
+            if (myCollection.get(i) > 20) {
+                myCollection.remove(i);
+            }
+        }
+
+        ////////////// 3 ///////////////
+        System.out.println("3");
+        try {
+            myCollection.add(2, 1);
+            myCollection.add(8, -3);
+            myCollection.add(5, -4 );
+        }catch (IndexOutOfBoundsException e){
+            System.err.println("Short array");
+        }
+
+        for (int i = 0; i < myCollection.size(); i++) {
+            System.out.printf("position – %d, value of element – %d\n", i, myCollection.get(i));
+        }
+
+        ////////////// 4 ///////////////
+        System.out.println("4");
+        System.out.println(myCollection.toString());
+        Collections.sort(myCollection);
+        System.out.println(myCollection.toString());
     }
 }
